@@ -150,3 +150,44 @@ keys = ['a', 'b', 'c', 'd', 'e']
 values = [1, 2, 3, 4, 5]
 my_dict = dict(zip(keys, values))
 print("Dictionary:", my_dict)
+
+# file I/O
+file = open("students.txt", "r")
+content = file.read()
+print("Content of students.txt:", content)
+file.close()
+
+
+with open("students.txt", "r") as file:
+    content = file.read()
+    print("Content of students.txt using with statement:", content)
+
+    with open("output.txt", "a") as file1:
+        file1.write("Hello i am append call\n")
+
+import json
+
+with open("student.json", "w") as json_write_file:
+    data_to_write = [{"name": "John", "marks": 85}, {"name": "Alice", "marks": 90}]
+    json.dump(data_to_write, json_write_file)
+    print("Data written to student.json")
+
+with open("student.json", "r") as json_file:
+    data = json.load(json_file)
+    print("Content of student.json:", data)
+
+data.append({
+    "name": "Shahid",
+    "marks": 85
+})
+
+with open("student.json", "w") as json_append_file:
+    data_to_append = [{"name": "Bob", "marks": 75}]
+    json.dump(data, json_append_file)
+    print("Data appended to student.json")
+
+try:
+    input_number = int(input("Enter a number: "))
+    print(f"You entered: {input_number}")
+except ValueError:
+    print("Invalid input. Please enter a valid number.")
